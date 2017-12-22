@@ -1,0 +1,2 @@
+# cppid
+GUIDS and UUIDS
