@@ -4,7 +4,7 @@
  * Copyright (C) 2017 by Sunil
  */
 
-#include "uuid.h"
+#include "uuid/uuid.h"
 
 using namespace cppid;
 
@@ -12,4 +12,10 @@ uuid::uuid() {}
 
 uuid::~uuid() {}
 
-std::string to_string() { return std::string("xxx-xxx-xxx"); }
+std::string uuid::to_string() {
+  auto f = [] () {
+    return std::string("some-uuid-to-string-here");
+  };
+  auto str = f();
+  return str;
+}
