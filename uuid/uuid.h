@@ -7,6 +7,7 @@
 #ifndef UUID_H
 #define UUID_H
 
+#include <cstdint>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -15,6 +16,11 @@
 #define UNUSED __attribute__((__unused__))
 
 namespace cppid {
+
+// custom unsigned int with 48bits
+struct uint48_t {
+  uint64_t x : 48;
+} __attribute__((packed));
 
 /**
  * UUID string representation
@@ -29,13 +35,19 @@ namespace cppid {
  * clock-seq-low          = hexOctet
  * node                   = 6hexOctet
  */
-struct uuid {
-  std::string time_low;
-  std::string time_mid;
-  std::string time_high_version;
-  std::string clock_seq_reserved;
-  std::string clock_seq_low;
-  std::string node;
+class uuid {
+ public:
+  std::string to_string();
+
+ private:
+  uint32_t time_low;
+  uint16_t time_mid;
+  uint16_t time_high_version;
+  uint8_t clock_seq_reserved;
+  uint8_t clock_seq_low;
+  uint48_t node;
+
+  constexpr static int SIZE = 16;
 };
 
 // Interface for creating a new id strategies. It could be
