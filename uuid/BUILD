@@ -26,9 +26,7 @@ filegroup(
     name = "uuid-srcs",
     srcs = [
         "uuid.cc",
-        "pseudo-random.cc",
-        "mac-gen.cc",
-        "crypto-hash.cc"
+        "uuid-gen.cc",
     ],
 )
 
@@ -43,7 +41,7 @@ filegroup(
     name = "uuid-hdrs",
     srcs = [
         ":export-hdrs",
-        "strategy.h",
+        "uuid-gen.h"
         # internal headers...
         # This doesn't work. How can i achieve this?
         # Export only subset of header files for consumption

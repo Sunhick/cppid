@@ -11,19 +11,9 @@
 
 namespace cppid {
 
-class PseudoRandomGenerator : public Generator {
+class UidGenerator : public Generator {
  public:
-  uuid newId();
-};
-
-class MacGenerator : public Generator {
- public:
-  uuid newId();
-};
-
-class HashGenerator : public Generator {
- public:
-  uuid newId();
+  uuid NewId();
 };
 
 }  // namespace cppid

@@ -37,15 +37,17 @@ struct uint48_t {
  */
 class uuid {
  public:
-  std::string to_string();
+  std::string ToString() const;
+  uuid(uint32_t time_low, uint16_t time_mid, uint16_t time_high_version,
+       uint8_t clock_seq_reserved, uint8_t clock_seq_low, uint48_t node);
 
  private:
-  uint32_t time_low;
-  uint16_t time_mid;
-  uint16_t time_high_version;
-  uint8_t clock_seq_reserved;
-  uint8_t clock_seq_low;
-  uint48_t node;
+  const uint32_t time_low;
+  const uint16_t time_mid;
+  const uint16_t time_high_version;
+  const uint8_t clock_seq_reserved;
+  const uint8_t clock_seq_low;
+  const uint48_t node;
 
   constexpr static int SIZE = 16;
 };
@@ -54,7 +56,7 @@ class uuid {
 // pseudo generator, 802 mac based or cryptographic hashing.
 class Generator {
  public:
-  virtual uuid newId() = 0;
+  virtual uuid NewId() = 0;
 };
 
 class UUID {
@@ -63,7 +65,7 @@ class UUID {
   // provide an overload with default generator
   // without introducing cyclic dep. maybe i have
   // to refactor. (later)
-  static uuid newId(std::unique_ptr<Generator> g);
+  static uuid NewId(std::unique_ptr<Generator> g);
 };
 
 }  // namespace cppid
