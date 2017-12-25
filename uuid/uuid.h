@@ -19,7 +19,13 @@ namespace cppid {
 
 // custom unsigned int with 48bits
 struct uint48_t {
-  uint64_t x : 48;
+  uint64_t v : 48;
+  explicit uint48_t(uint64_t v) : v(v) {}
+
+  // Define implicit conversion. so that we can
+  // use uint48_t as primitive data type w/o explicit
+  // type casting. Doesn't seem to work investigate.
+  operator uint64_t() const { return v; }
 } __attribute__((packed));
 
 /**
@@ -38,8 +44,10 @@ struct uint48_t {
 class uuid {
  public:
   std::string ToString() const;
-  uuid(uint32_t time_low, uint16_t time_mid, uint16_t time_high_version,
-       uint8_t clock_seq_reserved, uint8_t clock_seq_low, uint48_t node);
+  explicit uuid(const uint32_t& time_low, const uint16_t& time_mid,
+                const uint16_t& time_high_version,
+                const uint8_t& clock_seq_reserved, const uint8_t& clock_seq_low,
+                const uint48_t& node);
 
  private:
   const uint32_t time_low;
@@ -57,15 +65,14 @@ class uuid {
 class Generator {
  public:
   virtual uuid NewId() = 0;
+  virtual ~Generator() = 0;
 };
+
+class UidGenerator;
 
 class UUID {
  public:
-  // TODO (sunil):
-  // provide an overload with default generator
-  // without introducing cyclic dep. maybe i have
-  // to refactor. (later)
-  static uuid NewId(std::unique_ptr<Generator> g);
+  static std::string NewId(std::unique_ptr<Generator> gen);
 };
 
 }  // namespace cppid

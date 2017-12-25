@@ -10,5 +10,6 @@
 using namespace cppid;
 
 uuid UidGenerator::NewId() {
-  throw std::runtime_error("Not implemented");
+  return uuid((uint32_t)0xA12F0, (uint16_t)0xBB0, (uint16_t)0, (uint8_t)0,
+              (uint8_t)0, (uint48_t)0x99);
 }

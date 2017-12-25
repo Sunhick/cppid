@@ -1,5 +1,5 @@
 # Enable warnings
-build --cxxopt  -std=c++11
+build --cxxopt  -std=c++14
 build --cxxopt -Wall
 
 # commenting Werror for now. how to ignore
