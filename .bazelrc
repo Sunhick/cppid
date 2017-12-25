@@ -1,7 +1,11 @@
 # Enable warnings
 build --cxxopt  -std=c++11
 build --cxxopt -Wall
-build --cxxopt -Werror
+
+# commenting Werror for now. how to ignore
+# warnings from 3rd party packages. google-test.
+# build --cxxopt -Werror
+
 build --cxxopt -Wextra
 build --cxxopt -Woverloaded-virtual
 build --cxxopt -Wpedantic
