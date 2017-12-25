@@ -8,14 +8,6 @@
 
 using namespace cppid;
 
-uuid::uuid() {}
-
-uuid::~uuid() {}
-
-std::string uuid::to_string() {
-  auto f = [] () {
-    return std::string("some-uuid-to-string-here");
-  };
-  auto str = f();
-  return str;
+uuid UUID::newId(UNUSED std::unique_ptr<Generator> g) {
+  return uuid();
 }
