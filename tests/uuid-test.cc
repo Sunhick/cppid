@@ -3,8 +3,8 @@
  *
  * Copyright (C) 2017 by Sunil
  */
-#include "gtest/gtest.h"
 #include "uuid/uuid.h"
+#include "gtest/gtest.h"
 
 using namespace cppid;
 

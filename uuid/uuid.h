@@ -44,9 +44,11 @@ struct uint48_t {
 class uuid {
  public:
   std::string ToString() const;
-  explicit uuid(const uint32_t& time_low, const uint16_t& time_mid,
+  explicit uuid(const uint32_t& time_low,
+                const uint16_t& time_mid,
                 const uint16_t& time_high_version,
-                const uint8_t& clock_seq_reserved, const uint8_t& clock_seq_low,
+                const uint8_t& clock_seq_reserved,
+                const uint8_t& clock_seq_low,
                 const uint48_t& node);
 
  private:

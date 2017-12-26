@@ -19,9 +19,12 @@ std::string UUID::NewId(std::unique_ptr<Generator> gen) {
   return id.ToString();
 }
 
-uuid::uuid(const uint32_t& time_low, const uint16_t& time_mid,
-           const uint16_t& time_high_version, const uint8_t& clock_seq_reserved,
-           const uint8_t& clock_seq_low, const uint48_t& node)
+uuid::uuid(const uint32_t& time_low,
+           const uint16_t& time_mid,
+           const uint16_t& time_high_version,
+           const uint8_t& clock_seq_reserved,
+           const uint8_t& clock_seq_low,
+           const uint48_t& node)
     : time_low(time_low),
       time_mid(time_mid),
       time_high_version(time_high_version),
