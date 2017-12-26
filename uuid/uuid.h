@@ -68,11 +68,18 @@ class Generator {
   virtual ~Generator() = 0;
 };
 
-class UidGenerator;
+class UidGenerator : public Generator {
+ public:
+  uuid NewId();
+
+ private:
+  uint48_t getMAC();
+};
 
 class UUID {
  public:
-  static std::string NewId(std::unique_ptr<Generator> gen);
+  static std::string NewId(
+      std::unique_ptr<Generator> gen = std::make_unique<UidGenerator>());
 };
 
 }  // namespace cppid
