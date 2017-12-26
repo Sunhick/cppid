@@ -1,10 +1,15 @@
 # UUID testing using gtest
+load(
+    "//:cxxopts.bzl",
+    "GCC_TEST_FLAGS"
+)
+
 cc_test(
     name = "uuid-test",
     srcs = ["uuid-test.cc"],
-    copts = ["-Iexternal/gtest/include"],
+    copts = GCC_TEST_FLAGS,
     deps = [
         "//uuid:uuid",
-        "@gtest//:main",
+        "@com_google_googletest//:gtest_main",
     ],
 )

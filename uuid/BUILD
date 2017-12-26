@@ -1,14 +1,19 @@
 # Copyright (C) 2017 by Sunil
-package(
-    default_visibility = ["//visibility:private"],
+load(
+    "//:cxxopts.bzl",
+    "GCC_FLAGS"
 )
+package(default_visibility = ["//visibility:private"])
 
-cc_inc_library(
+licenses(["notice"])
+
+cc_library(
     name = "uuid",
     hdrs = [":export-hdrs"],
     deps = [
         ":uuid-internal"
     ],
+    copts = GCC_FLAGS,
     visibility = ["//visibility:public"],
 )
 
@@ -16,12 +21,13 @@ cc_library(
     name = "uuid-internal",
     srcs = [":uuid-srcs"],
     hdrs = [":uuid-hdrs"],
+    copts = GCC_FLAGS,
 )
 
 # filegroup vs list ?
 # filegroups allow you to exclude some of the files, glob for
 # inclusion and exclusion etc. Which you can't do in list &
-# would have to list all files manually.
+# would have to list alln files manually.
 filegroup(
     name = "uuid-srcs",
     srcs = [
